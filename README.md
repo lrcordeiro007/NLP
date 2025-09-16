@@ -13,11 +13,6 @@ pip install -r requirements.txt
 - Para rodar o código utilize o seguinte comando no terminal:
 
 ```bash
-python -m nltk.downloader stopwords
-```
-
-- Logo após utilize desse comando:
-```bash
-python analise_sentimento.py
+python teste_sentimento.py
 ```
 
