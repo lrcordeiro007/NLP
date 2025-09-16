@@ -10,20 +10,31 @@ from sklearn.metrics import accuracy_score
 nltk.download('stopwords')
 
 # 1. Criar um conjunto de dados de exemplo
-texts = [
-    "A empresa tem um ótimo atendimento ao cliente.",
-    "O produto é de baixa qualidade e não funciona.",
-    "Excelente serviço, superou minhas expectativas!",
-    "Péssimo suporte, demoraram para me responder.",
-    "Estou muito satisfeito com o resultado final.",
-    "Que decepção! Não recomendo de jeito nenhum.",
-    "Melhor experiência de compra que já tive.",
-    "Estou decepcionado com a entrega atrasada.",
-    "Pior produto que já comprei na vida."
-]
+texts = []
+labels = []
+with open('dados.txt', 'r', encoding='utf-8') as f:
+    for linha in f:
+        # Espera-se que cada linha seja: texto[TAB]label
+        partes = linha.strip().rsplit('\t', 1)
+        if len(partes) == 2:
+            texts.append(partes[0])
+            labels.append(partes[1])
 
-labels = ['positivo', 'negativo', 'positivo', 'negativo', 
-          'positivo', 'negativo', 'positivo', 'negativo', 'negativo']
+# Se não houver dados, use os exemplos antigos
+if not texts:
+    texts = [
+        "A empresa tem um ótimo atendimento ao cliente.",
+        "O produto é de baixa qualidade e não funciona.",
+        "Excelente serviço, superou minhas expectativas!",
+        "Péssimo suporte, demoraram para me responder.",
+        "Estou muito satisfeito com o resultado final.",
+        "Que decepção! Não recomendo de jeito nenhum.",
+        "Melhor experiência de compra que já tive.",
+        "Estou decepcionado com a entrega atrasada.",
+        "Pior produto que já comprei na vida."
+    ]
+    labels = ['positivo', 'negativo', 'positivo', 'negativo', 
+              'positivo', 'negativo', 'positivo', 'negativo', 'negativo']
 
 # 2. Pré-processamento e Vetorização
 vectorizer = TfidfVectorizer(
