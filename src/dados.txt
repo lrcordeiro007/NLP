@@ -1,0 +1,2 @@
+A empresa tem um ótimo atendimento ao cliente.   positivo
+O produto é de baixa qualidade e não funciona.   negativo
